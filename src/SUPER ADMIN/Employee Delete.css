@@ -1,0 +1,106 @@
+.employee-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.employee-container h2 {
+  margin-bottom: 15px;
+}
+
+.search-box {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.add-form input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex: 1;
+}
+
+.add-btn {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.add-btn:hover {
+  background-color: darkgreen;
+}
+
+.employee-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.employee-table th,
+.employee-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.employee-table th {
+  background-color: #000000;
+}
+
+.employee-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+.ticket-list {
+  margin-top: 20px;
+}
+
+.ticket-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ticket-list th,
+.ticket-list td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.ticket-list th {
+  background-color: #f2f2f2;
+}
+
+.employee-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.delete-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: darkred;
+}
+
+.empty-msg {
+  color: gray;
+  font-style: italic;
+}

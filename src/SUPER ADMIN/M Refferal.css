@@ -1,0 +1,86 @@
+/* Container styling */
+.refer {
+  padding: 20px;
+  background: #FFFDE7; /* very light yellow */
+  min-height: 100vh;
+}
+
+/* Grid layout */
+.grid-container {
+  display: flex;
+  flex-wrap: wrap; /* fixed grid auto-fit replacement */
+  gap: 20px;
+}
+
+/* Each card */
+.grid-item {
+  background: #FFF9C4; /* soft yellow */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.grid-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Headings */
+.grid-item h1 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  color: #B8860B; /* dark gold heading */
+}
+
+.grid-item p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/* Referral link section */
+.referral-link {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.referral-link label {
+  font-weight: 500;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.referral-link input {
+  padding: 8px 10px;
+  border: 1px solid #FFD54F; /* light gold border */
+  border-radius: 6px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.referral-link input:focus {
+  border-color: #B8860B; /* dark gold */
+  box-shadow: 0 0 6px rgba(184,134,11,0.3);
+}
+
+/* Button styling */
+.referral-link button {
+  padding: 8px 12px;
+  background: linear-gradient(45deg, #FFD54F, #B8860B); /* light → dark gold */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.referral-link button:hover {
+  background: linear-gradient(45deg, #B8860B, #FFD54F);
+  transform: scale(1.05);
+}

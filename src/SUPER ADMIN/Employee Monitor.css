@@ -1,0 +1,90 @@
+.employee-monitor {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.employee-monitor h2 {
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+/* Summary cards */
+.summary-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.card {
+  flex: 1 1 150px;
+  background-color: #f4f4f4;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #000000;
+}
+
+.card p {
+  font-size: 20px;
+  font-weight: bold;
+  color: #222;
+}
+
+/* Employee table */
+.employee-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.employee-table th,
+.employee-table td {
+  border: 1px solid #020202;
+  padding: 10px;
+}
+
+.employee-table th {
+  background-color: #0b0b0b;
+}
+
+.employee-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.employee-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Status colors */
+.status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.status.active {
+  background-color: green;
+}
+
+.status.inactive {
+  background-color: red;
+}
+
+.status.onleave {
+  background-color: orange;
+}
+
+/* No data message */
+.no-data {
+  font-style: italic;
+  color: #888;
+}

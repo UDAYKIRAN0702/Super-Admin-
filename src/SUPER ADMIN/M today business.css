@@ -1,0 +1,64 @@
+/* ===== M Today Business.css ===== */
+
+/* General Styling */
+.today-business {
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #FFFDE7; /* very light yellow background */
+  min-height: 100vh;
+}
+
+.today-business h1 {
+  font-size: 2rem;
+  color: #B8860B; /* dark gold heading */
+  margin-bottom: 20px;
+}
+
+/* Grid Layout */
+.business-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+/* Individual Business Card */
+.business-card {
+  background-color: #FFF9C4; /* light yellow card */
+  border-left: 6px solid #B8860B; /* dark gold accent */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  flex: 0 0 220px; /* fixed width for each card */
+  box-sizing: border-box;
+}
+
+.business-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.business-card h2 {
+  margin-bottom: 10px;
+  color: #8B6B0B; /* slightly darker gold for heading */
+  font-size: 1.5rem;
+}
+
+.business-card p {
+  margin: 5px 0;
+  font-size: 1rem;
+  color: #5c4a0a; /* darker yellow/gold text */
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+  .business-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .business-card {
+    width: 90%;
+  }
+}
