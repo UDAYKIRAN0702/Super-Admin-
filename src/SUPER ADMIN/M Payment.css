@@ -1,9 +1,7 @@
 /* ===== Payments Container ===== */
 .payments-container {
   padding: 20px;
-  background: #FFFDE7; /* very light yellow */
-  min-height: 100vh;
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* ===== Header ===== */
@@ -12,134 +10,237 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  flex-wrap: wrap;
-  padding-top: 80px;
 }
 
-.payments-header h2 {
+.payments-header h1 {
   font-size: 24px;
-  font-weight: 600;
-  color: #B8860B; /* dark gold */
-  margin: 0 0 10px 0;
+  font-weight: bold;
+  color: #333;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
 }
 
 .payments-search {
   padding: 8px 12px;
+  border: 1px solid #ccc;
   border-radius: 6px;
-  border: 1px solid #FFD54F; /* light gold border */
-  outline: none;
   font-size: 14px;
-  transition: 0.3s ease;
 }
 
-.payments-search:focus {
-  border-color: #B8860B; /* dark gold */
-  box-shadow: 0 0 5px rgba(184,134,11,0.4);
-}
-
-/* ===== Loading, Error, No Data ===== */
-.loading-text,
-.error-text,
-.no-data {
-  text-align: center;
-  padding: 15px;
-  font-size: 16px;
+.add-btn {
+  padding: 8px 14px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
   border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease;
 }
-
-.loading-text {
-  color: #B8860B; /* dark gold */
-  background: #FFF9C4; /* light yellow */
-}
-
-.error-text {
-  color: #e74c3c;
-  background: #fdecea;
-}
-
-.no-data {
-  color: #555;
-  background: #FFFDE7;
-}
-
-/* ===== Table Wrapper ===== */
-.table-wrapper {
-  overflow-x: auto;
-  background: #FFF9C4; /* light yellow */
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+.add-btn:hover {
+  background-color: #218838;
 }
 
 /* ===== Table ===== */
+.table-wrapper {
+  overflow-x: auto;
+}
+
 .payments-table {
   width: 100%;
   border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .payments-table th,
 .payments-table td {
   padding: 12px 15px;
+  border-bottom: 1px solid #eaeaea;
   text-align: left;
-  border-bottom: 1px solid #FFE082; /* light gold border */
+  font-size: 14px;
 }
 
 .payments-table th {
-  background: #B8860B; /* dark gold */
-  color: #FFF9C4; /* light yellow text */
-  font-weight: bold;
-  position: sticky;
-  top: 0;
-  z-index: 1;
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #444;
 }
 
 .payments-table tr:hover {
-  background: #FFF59D; /* soft yellow hover */
-  transition: 0.2s ease-in-out;
+  background-color: #f1f1f1;
 }
 
-.payments-table td {
-  font-size: 14px;
-  color: #333;
-}
-
-/* ===== Payment Status Badge ===== */
+/* ===== Badges ===== */
 .payment-badge {
-  display: inline-block;
-  padding: 5px 10px;
-  font-size: 12px;
-  font-weight: bold;
+  padding: 4px 10px;
   border-radius: 12px;
-  text-transform: uppercase;
-}
-
-.payment-badge.pending {
-  background: #FFF9C4; /* light yellow */
-  color: #B8860B; /* dark gold */
-  border: 1px solid #FFD54F; /* light gold border */
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
 }
 
 .payment-badge.paid {
-  background: #d4edda; /* keep green for paid */
+  background: #d4edda;
   color: #155724;
-  border: 1px solid #c3e6cb;
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 768px) {
-  .payments-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+.payment-badge.pending {
+  background: #fff3cd;
+  color: #856404;
+}
 
-  .payments-search {
-    width: 100%;
-    margin-top: 10px;
-  }
+/* ===== Buttons in Table ===== */
+.edit-btn,
+.delete-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
 
-  .payments-table th,
-  .payments-table td {
-    padding: 10px;
-    font-size: 13px;
+.edit-btn {
+  background-color: #007bff;
+  color: #fff;
+}
+.edit-btn:hover {
+  background-color: #0069d9;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: #fff;
+}
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+/* ===== Modal Overlay ===== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+  z-index: 999;
+}
+
+/* ===== Modal ===== */
+.modal {
+    background: #fff;
+    padding: 23px;
+    border-radius: 16px;
+    width: 371px;
+    max-width: 79%;
+    box-shadow: 0 4px 42px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal h2 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #333;
+  text-align: center;
+}
+
+/* Inputs inside modal */
+.modal label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: #444;
+}
+
+.modal input,
+.modal select {
+  margin-top: 5px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.modal input:focus,
+.modal select:focus {
+  border-color: #007bff;
+}
+
+/* ===== Modal Actions ===== */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.save-btn {
+  padding: 8px 14px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+.save-btn:hover {
+  background-color: #0069d9;
+}
+
+.cancel-btn {
+  padding: 8px 14px;
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+.cancel-btn:hover {
+  background-color: #5a6268;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Utility States ===== */
+.loading-text,
+.error-text,
+.no-data {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+.error-text {
+  color: #dc3545;
 }

@@ -16,6 +16,7 @@ import Profile from "./profile/profile";
 import EmployeeDelete from "./SUPER ADMIN/Employee Delete";
 import EmployeeMonitor from "./SUPER ADMIN/Employee Monitor";
 import StaffLogin from "./profile/Logout";
+import PaymentForm from "./SUPER ADMIN/Paymentdata";
 
 
 
@@ -46,6 +47,7 @@ function App() {
          <Route path="/employee Monitor" element={<EmployeeMonitor/>} />
       <Route path="/login" element={<StaffLogin/>} />
 
+      <Route path="/Paymentdata" element={<PaymentForm/>} />
 
        
         </Route>

@@ -98,8 +98,14 @@ export default function MarketingDashboard() {
                 <FaBusinessTime /> Today Business
               </NavLink>
             </li>
-             
-          
+              <li>
+              <NavLink to="/Paymentdata">
+                <SiCivicrm /> Payment Data
+              </NavLink>
+            </li>
+
+
+
             <li>
               <NavLink to="/Mpayment">
                 <FaCcAmazonPay /> Payments
