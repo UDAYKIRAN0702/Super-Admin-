@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "./M Payment.css";
+
+// Base API URL - replace with your actual API endpoint
+const API_BASE_URL = "http://127.0.0.1:8000/api/adminpayments/";
 
 export default function MPayments() {
   const [payments, setPayments] = useState([]);
@@ -12,39 +16,65 @@ export default function MPayments() {
   const [currentPayment, setCurrentPayment] = useState(null);
   const [isAdding, setIsAdding] = useState(false);
 
-  // Example fetch simulation (replace with API call)
-  useEffect(() => {
+  // Create an axios instance with base configuration
+  const api = axios.create({
+    baseURL: API_BASE_URL,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  // API call functions using axios
+  const fetchPayments = async () => {
     try {
       setLoading(true);
-      setTimeout(() => {
-        setPayments([
-          {
-            id: "C001",
-            clientName: "ABC Pvt Ltd",
-            contactPerson: "John Doe",
-            referralAmount: 5000,
-            myCommission: 500,
-            myPercent: "10%",
-            totalPay: 5500,
-            withdrawPayment: "Pending",
-          },
-          {
-            id: "C002",
-            clientName: "XYZ Solutions",
-            contactPerson: "Jane Smith",
-            referralAmount: 8000,
-            myCommission: 800,
-            myPercent: "10%",
-            totalPay: 8800,
-            withdrawPayment: "Paid",
-          },
-        ]);
-        setLoading(false);
-      }, 1000);
+      const response = await api.get("/");
+      setPayments(response.data);
+      setError(null);
     } catch (err) {
       setError(err.message);
+      console.error("Error fetching payments:", err);
+    } finally {
       setLoading(false);
     }
+  };
+
+  const createPayment = async (paymentData) => {
+    try {
+      const response = await api.post("/", paymentData);
+      return response.data;
+    } catch (err) {
+      setError(err.message);
+      console.error("Error creating payment:", err);
+      throw err;
+    }
+  };
+
+  const updatePayment = async (id, paymentData) => {
+    try {
+      const response = await api.put(`/${id}/`, paymentData);
+      return response.data;
+    } catch (err) {
+      setError(err.message);
+      console.error("Error updating payment:", err);
+      throw err;
+    }
+  };
+
+  const deletePayment = async (id) => {
+    try {
+      await api.delete(`/${id}/`);
+      return true;
+    } catch (err) {
+      setError(err.message);
+      console.error("Error deleting payment:", err);
+      throw err;
+    }
+  };
+
+  // Fetch payments on component mount
+  useEffect(() => {
+    fetchPayments();
   }, []);
 
   const filteredPayments = payments.filter((p) =>
@@ -65,13 +95,13 @@ export default function MPayments() {
   const handleAdd = () => {
     setCurrentPayment({
       id: "",
-      clientName: "",
-      contactPerson: "",
-      referralAmount: "",
-      myCommission: "",
-      myPercent: "",
-      totalPay: "",
-      withdrawPayment: "Pending",
+      client_name: "",
+      Contact_person: "",
+      project_amount: "",
+      my_commission: "",
+      my_percentage: "",
+      total_pay: "",
+      withdraw_payment: "Pending",
     });
     setIsAdding(true);
     setIsEditing(true);
@@ -84,29 +114,36 @@ export default function MPayments() {
   };
 
   // Save (Add or Update)
-  const handleSave = () => {
-    if (isAdding) {
-      // Generate unique ID if not entered
-      const newPayment = {
-        ...currentPayment,
-        id: currentPayment.id || `C${String(payments.length + 1).padStart(3, "0")}`,
-      };
-      setPayments((prev) => [...prev, newPayment]);
-    } else {
-      // Update existing
-      setPayments((prev) =>
-        prev.map((p) => (p.id === currentPayment.id ? currentPayment : p))
-      );
+  const handleSave = async () => {
+    try {
+      if (isAdding) {
+        // Create new payment
+        const newPayment = await createPayment(currentPayment);
+        setPayments((prev) => [...prev, newPayment]);
+      } else {
+        // Update existing payment
+        const updatedPayment = await updatePayment(currentPayment.id, currentPayment);
+        setPayments((prev) =>
+          prev.map((p) => (p.id === updatedPayment.id ? updatedPayment : p))
+        );
+      }
+      setIsEditing(false);
+      setCurrentPayment(null);
+      setIsAdding(false);
+    } catch (err) {
+      // Error is already handled in the API functions
     }
-    setIsEditing(false);
-    setCurrentPayment(null);
-    setIsAdding(false);
   };
 
   // Delete row
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this payment?")) {
-      setPayments((prev) => prev.filter((p) => p.id !== id));
+      try {
+        await deletePayment(id);
+        setPayments((prev) => prev.filter((p) => p.id !== id));
+      } catch (err) {
+        // Error is already handled in the API functions
+      }
     }
   };
 
@@ -154,21 +191,21 @@ export default function MPayments() {
               {filteredPayments.map((payment) => (
                 <tr key={payment.id}>
                   <td>{payment.id}</td>
-                  <td>{payment.clientName}</td>
-                  <td>{payment.contactPerson}</td>
-                  <td>{payment.referralAmount}</td>
-                  <td>{payment.myCommission}</td>
-                  <td>{payment.myPercent}</td>
-                  <td>{payment.totalPay}</td>
+                  <td>{payment.client_name}</td>
+                  <td>{payment.Contact_person}</td>
+                  <td>{payment.project_amount}</td>
+                  <td>{payment.my_commission}</td>
+                  <td>{payment.my_percentage}</td>
+                  <td>{payment.total_pay}</td>
                   <td>
                     <span
                       className={`payment-badge ${
-                        payment.withdrawPayment.toLowerCase() === "paid"
+                        payment.withdraw_payment === "paid"
                           ? "paid"
                           : "pending"
                       }`}
                     >
-                      {payment.withdrawPayment}
+                      {payment.withdraw_payment}
                     </span>
                   </td>
                   <td>
@@ -211,8 +248,8 @@ export default function MPayments() {
               Client Name:
               <input
                 type="text"
-                name="clientName"
-                value={currentPayment.clientName}
+                name="client_name"
+                value={currentPayment.client_name}
                 onChange={handleChange}
               />
             </label>
@@ -220,8 +257,8 @@ export default function MPayments() {
               Contact Person:
               <input
                 type="text"
-                name="contactPerson"
-                value={currentPayment.contactPerson}
+                name="Contact_person"
+                value={currentPayment.Contact_person}
                 onChange={handleChange}
               />
             </label>
@@ -229,8 +266,8 @@ export default function MPayments() {
               Project Amount:
               <input
                 type="number"
-                name="referralAmount"
-                value={currentPayment.referralAmount}
+                name="project_amount"
+                value={currentPayment.project_amount}
                 onChange={handleChange}
               />
             </label>
@@ -238,8 +275,8 @@ export default function MPayments() {
               My Commission:
               <input
                 type="number"
-                name="myCommission"
-                value={currentPayment.myCommission}
+                name="my_commission"
+                value={currentPayment.my_commission}
                 onChange={handleChange}
               />
             </label>
@@ -247,8 +284,8 @@ export default function MPayments() {
               My Percentage:
               <input
                 type="text"
-                name="myPercent"
-                value={currentPayment.myPercent}
+                name="my_percentage"
+                value={currentPayment.my_percentage}
                 onChange={handleChange}
               />
             </label>
@@ -256,16 +293,16 @@ export default function MPayments() {
               Total Pay:
               <input
                 type="number"
-                name="totalPay"
-                value={currentPayment.totalPay}
+                name="total_pay"
+                value={currentPayment.total_pay}
                 onChange={handleChange}
               />
             </label>
             <label>
               Withdraw Payment:
               <select
-                name="withdrawPayment"
-                value={currentPayment.withdrawPayment}
+                name="withdraw_payment"
+                value={currentPayment.withdraw_payment}
                 onChange={handleChange}
               >
                 <option value="Pending">Pending</option>
