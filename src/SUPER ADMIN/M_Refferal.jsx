@@ -1,5 +1,5 @@
 import React from 'react';
-import './M Refferal.css';
+import './M_Refferal.css';
 
 function MRefferal() {
   const referralData = [

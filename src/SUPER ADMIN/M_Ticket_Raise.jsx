@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { FaTicketAlt } from 'react-icons/fa';
-import './M Ticket Raise.css'; // Use your existing CSS
+import './M_Ticket_Raise.css'; 
 
 function MTicketRaise() {
-  const [view, setView] = useState('status'); // Default view
+  const [view, setView] = useState('status'); 
   const [tickets, setTickets] = useState([
     {
       id: 1,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaHospital, FaMoneyBillWave, FaCogs, FaUsers } from 'react-icons/fa';
-import './M Dashboard.css';
+import './M_Dashboard.css';
 
 export default function ManagerDashboard() {
   const cards = [

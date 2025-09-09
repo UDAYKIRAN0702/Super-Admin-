@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./M Payment.css";
+import "./M_Payment.css";
 
 // Base API URL - replace with your actual API endpoint
 const API_BASE_URL = "http://127.0.0.1:8000/api/adminpayments/";

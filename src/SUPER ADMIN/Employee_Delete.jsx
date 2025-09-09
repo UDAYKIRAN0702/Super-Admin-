@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Employee Delete.css"; // Import the CSS file
+import "./Employee_Delete.css"; // Import the CSS file
 
 function EmployeeDelete() {
   const [employees, setEmployees] = useState([

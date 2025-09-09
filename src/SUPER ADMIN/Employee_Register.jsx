@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './Employee Register.css';
+import './Employee_Register.css';
 
 function EmployeeRegister() {
   const [employee, setEmployee] = useState({

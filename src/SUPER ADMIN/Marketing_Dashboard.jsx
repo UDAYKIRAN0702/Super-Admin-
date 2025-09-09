@@ -17,7 +17,7 @@ import { RxDashboard } from "react-icons/rx";
 import { SiCivicrm } from "react-icons/si";
 import { LuBriefcaseBusiness, LuLogOut } from "react-icons/lu";
 import { TiTicket } from "react-icons/ti";
-import "./Marketing Dashboard.css";
+import "./Marketing_Dashboard.css";
 
 export default function MarketingDashboard() {
   const [open, setOpen] = useState(false);

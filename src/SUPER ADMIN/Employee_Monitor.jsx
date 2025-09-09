@@ -1,8 +1,7 @@
 import React from 'react';
-import './Employee Monitor.css';
+import './Employee_Monitor.css';
 
 function EmployeeMonitor() {
-  // Employee data defined inside the component
   const employees = [
     { id: 1, name: "John Doe", department: "IT", status: "Active", salary: 50000, projectHours: 120 },
     { id: 2, name: "Jane Smith", department: "HR", status: "Inactive", salary: 40000, projectHours: 80 },

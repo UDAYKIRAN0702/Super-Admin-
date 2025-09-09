@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './change password.css'; // optional CSS file
+import './change_password.css';
 
 function ChangePassword() {
   const [formData, setFormData] = useState({

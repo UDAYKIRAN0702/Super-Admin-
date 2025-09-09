@@ -1,22 +1,22 @@
 import React, { Profiler } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import MarketingDashboard from "./SUPER ADMIN/Marketing Dashboard";
-import ManagerDashboard from "./SUPER ADMIN/M Dashboard";
-import MTodayBusines from "./SUPER ADMIN/M today business";
-import MRefferal from "./SUPER ADMIN/M Refferal";
-import MPayments from "./SUPER ADMIN/M Payment";
-import MBusiness from "./SUPER ADMIN/M Business Analysis";
-import MTicketRaise from "./SUPER ADMIN/M Ticket Raise";
-import MOrgTree from "./SUPER ADMIN/M Catelist";
-import EmployeeRegister from "./SUPER ADMIN/Employee Register";
+import MarketingDashboard from "./SUPER ADMIN/Marketing_Dashboard";
+import ManagerDashboard from "./SUPER ADMIN/M_Dashboard";
+import MTodayBusines from "./SUPER ADMIN/M_today_business";
+import MRefferal from "./SUPER ADMIN/M_Refferal";
+import MPayments from "./SUPER ADMIN/M_Payment";
+import MTicketRaise from "./SUPER ADMIN/M_Ticket_Raise";
+import MOrgTree from "./SUPER ADMIN/M_Catelist";
+import EmployeeRegister from "./SUPER ADMIN/Employee_Register";
 import EmployeeTrack from "./SUPER ADMIN/EmployeeTrack";
-import IndividualCRM from "./SUPER ADMIN/E Individual CRM";
-import EmployeeCRM from "./SUPER ADMIN/M crm";
+import IndividualCRM from "./SUPER ADMIN/E_Individual_CRM";
+import EmployeeCRM from "./SUPER ADMIN/M_crm";
 import Profile from "./profile/profile";
-import EmployeeDelete from "./SUPER ADMIN/Employee Delete";
-import EmployeeMonitor from "./SUPER ADMIN/Employee Monitor";
+import EmployeeDelete from "./SUPER ADMIN/Employee_Delete";
+import EmployeeMonitor from "./SUPER ADMIN/Employee_Monitor";
 import StaffLogin from "./profile/Logout";
 import PaymentForm from "./SUPER ADMIN/Paymentdata";
+import MBusiness from "./SUPER ADMIN/M_Business_Analysis";
 
 
 

@@ -14,7 +14,7 @@ import {
   Legend,
   ResponsiveContainer
 } from "recharts";
-import './M Business Analysis.css';
+import './M_Business_Analysis.css';
 
 function MBusiness() {
   const lineData = [

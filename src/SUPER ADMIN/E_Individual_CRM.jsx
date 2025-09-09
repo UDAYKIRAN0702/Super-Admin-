@@ -10,7 +10,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { FaSearch } from "react-icons/fa";
-import "./E Individual CRM.css";
+import "./E_Individual_CRM.css";
 
 const employeeData = {
   Johnu: [
