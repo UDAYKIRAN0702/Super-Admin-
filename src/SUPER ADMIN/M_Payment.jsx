@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./M_Payment.css";
 
-// Base API URL - replace with your actual API endpoint
 const API_BASE_URL = "http://127.0.0.1:8000/api/adminpayments/";
 
 export default function MPayments() {
@@ -11,12 +10,10 @@ export default function MPayments() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Popup states
   const [isEditing, setIsEditing] = useState(false);
   const [currentPayment, setCurrentPayment] = useState(null);
   const [isAdding, setIsAdding] = useState(false);
 
-  // Create an axios instance with base configuration
   const api = axios.create({
     baseURL: API_BASE_URL,
     headers: {
@@ -24,7 +21,6 @@ export default function MPayments() {
     },
   });
 
-  // API call functions using axios
   const fetchPayments = async () => {
     try {
       setLoading(true);
@@ -72,7 +68,6 @@ export default function MPayments() {
     }
   };
 
-  // Fetch payments on component mount
   useEffect(() => {
     fetchPayments();
   }, []);
@@ -84,14 +79,12 @@ export default function MPayments() {
       .includes(search.toLowerCase())
   );
 
-  // Open edit popup
   const handleEdit = (payment) => {
     setCurrentPayment({ ...payment });
     setIsEditing(true);
     setIsAdding(false);
   };
 
-  // Open add popup
   const handleAdd = () => {
     setCurrentPayment({
       id: "",
@@ -107,21 +100,17 @@ export default function MPayments() {
     setIsEditing(true);
   };
 
-  // Handle input change inside popup
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCurrentPayment((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Save (Add or Update)
   const handleSave = async () => {
     try {
       if (isAdding) {
-        // Create new payment
         const newPayment = await createPayment(currentPayment);
         setPayments((prev) => [...prev, newPayment]);
       } else {
-        // Update existing payment
         const updatedPayment = await updatePayment(currentPayment.id, currentPayment);
         setPayments((prev) =>
           prev.map((p) => (p.id === updatedPayment.id ? updatedPayment : p))
@@ -131,18 +120,15 @@ export default function MPayments() {
       setCurrentPayment(null);
       setIsAdding(false);
     } catch (err) {
-      // Error is already handled in the API functions
     }
   };
 
-  // Delete row
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this payment?")) {
       try {
         await deletePayment(id);
         setPayments((prev) => prev.filter((p) => p.id !== id));
       } catch (err) {
-        // Error is already handled in the API functions
       }
     }
   };
