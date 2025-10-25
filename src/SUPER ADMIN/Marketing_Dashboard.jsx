@@ -1,34 +1,30 @@
 import React, { useState, useRef, useEffect } from "react";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import { TiUserDeleteOutline } from "react-icons/ti";
-import { LuMonitorDot } from "react-icons/lu";
-
+import { NavLink, Outlet } from "react-router-dom";
 import {
   FaUserCircle,
   FaUser,
   FaBusinessTime,
-  FaShareSquare,
   FaCcAmazonPay,
 } from "react-icons/fa";
-import { GiArchiveRegister } from "react-icons/gi";
-import { MdSpatialTracking } from "react-icons/md";
-import { RiLogoutBoxLine, RiInformation2Line } from "react-icons/ri";
-import { RxDashboard } from "react-icons/rx";
-import { SiCivicrm } from "react-icons/si";
 import { LuBriefcaseBusiness, LuLogOut } from "react-icons/lu";
-import { TiTicket } from "react-icons/ti";
+import { TiTicket, TiUserDeleteOutline } from "react-icons/ti";
+import { RiLogoutBoxLine } from "react-icons/ri";
+import { SiCivicrm } from "react-icons/si";
+import { RxDashboard } from "react-icons/rx";
+import { LuMonitorDot } from "react-icons/lu";
+import { MdSpatialTracking } from "react-icons/md";
+import { GiArchiveRegister } from "react-icons/gi";
+
 import "./Marketing_Dashboard.css";
 
-export default function MarketingDashboard() {
+export default function MarketingDashboard({ setIsLoggedIn }) {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
-  const navigate = useNavigate();
 
   const onLogout = () => {
-    navigate("/login");
+    setIsLoggedIn(false); // close dashboard and go to login
   };
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -39,7 +35,6 @@ export default function MarketingDashboard() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Scroll effect for header
   useEffect(() => {
     const handleScroll = () => {
       const header = document.querySelector(".dashboard-header");
@@ -55,36 +50,33 @@ export default function MarketingDashboard() {
 
   return (
     <div className="dashboard-container">
-      {/* ===== Header ===== */}
-   <header className="dashboard-header">
-  <h2 className="header-title">TSAR IT Super Admin Portal - Dashboard</h2>
-  <div className="dashboard-header-wrapper">
-    <div className="profile-section" ref={dropdownRef}>
-      <button
-        className="profile-btn"     
-        onClick={() => setOpen((prev) => !prev)}
-      >
-        <FaUserCircle className="profile-icon" />
-        <span className="profile-text">RAKESH</span>
-      </button>
-      {open && (
-        <ul className="dropdown-content">
-          <li>
-            <NavLink to="/profile">
-              <FaUser className="icon" /> Profile
-            </NavLink>
-          </li>
-          <li onClick={onLogout}>
-            <RiLogoutBoxLine className="icon" /> Logout
-          </li>
-        </ul>
-      )}
-    </div>
-  </div>
-</header>
+      <header className="dashboard-header">
+        <h2 className="header-title">TSAR IT Super Admin Portal - Dashboard</h2>
+        <div className="dashboard-header-wrapper">
+          <div className="profile-section" ref={dropdownRef}>
+            <button
+              className="profile-btn"
+              onClick={() => setOpen((prev) => !prev)}
+            >
+              <FaUserCircle className="profile-icon" />
+              <span className="profile-text">RAKESH</span>
+            </button>
+            {open && (
+              <ul className="dropdown-content">
+                <li>
+                  <NavLink to="/profile">
+                    <FaUser className="icon" /> Profile
+                  </NavLink>
+                </li>
+                <li onClick={onLogout}>
+                  <RiLogoutBoxLine className="icon" /> Logout
+                </li>
+              </ul>
+            )}
+          </div>
+        </div>
+      </header>
 
-
-      {/* ===== Sidebar + Main Content ===== */}
       <div className="dashboard-body">
         <aside className="sidebar">
           <ul>
@@ -98,14 +90,11 @@ export default function MarketingDashboard() {
                 <FaBusinessTime /> Today Business
               </NavLink>
             </li>
-              <li>
+            <li>
               <NavLink to="/Paymentdata">
                 <SiCivicrm /> Payment Data
               </NavLink>
             </li>
-
-
-
             <li>
               <NavLink to="/Mpayment">
                 <FaCcAmazonPay /> Payments
@@ -121,13 +110,12 @@ export default function MarketingDashboard() {
                 <TiTicket /> Ticket Raise
               </NavLink>
             </li>
-           
             <li>
               <NavLink to="/Memployee-register">
                 <GiArchiveRegister /> Employee Register
               </NavLink>
             </li>
-                <li>
+            <li>
               <NavLink to="/individual-crm">
                 <SiCivicrm /> Employee CRM
               </NavLink>
@@ -137,14 +125,13 @@ export default function MarketingDashboard() {
                 <MdSpatialTracking /> Employee Track
               </NavLink>
             </li>
-          
-             <li>
-              <NavLink to="/employee Monitor">
-               <LuMonitorDot /> Employee Monitor
+            <li>
+              <NavLink to="/employee-Monitor">
+                <LuMonitorDot /> Employee Monitor
               </NavLink>
             </li>
-             <li>
-              <NavLink to="/employee Delete">
+            <li>
+              <NavLink to="/employee-Delete">
                 <TiUserDeleteOutline /> Employee Delete
               </NavLink>
             </li>

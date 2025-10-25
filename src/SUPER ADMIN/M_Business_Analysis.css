@@ -1,53 +1,64 @@
+
 .business-dashboard {
-  padding: 20px;
+  padding:461px 30px 30px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #ffffff;
   min-height: 100vh;
-  padding-top: 30%;
+  box-sizing: border-box;
+  color: #000000;
 }
 
-/* Dashboard Title */
 .dashboard-title {
   text-align: center;
   font-size: 2.2rem;
-  color: #B8860B; /* dark gold heading */
+  color: #B8860B; 
   margin-bottom: 40px;
+  font-weight: bold;
 }
 
-/* Full-width row layout */
 .chart-row {
   display: flex;
   gap: 20px;
   justify-content: space-between;
   flex-wrap: wrap;
+  margin-bottom: 30px;
 }
 
-/* Chart Card Styling */
 .chart-card {
-  background-color: #FFF9C4; /* light yellow card background */
-  border-left: 6px solid #B8860B; /* dark gold border */
+  background-color: #FFF9C4;
+  border-left: 6px solid #B8860B; 
   border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  flex: 1 1 30%; /* each card takes roughly 30% of row */
+  flex: 1 1 30%; 
   min-width: 350px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
 }
 
 .chart-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* Chart Title */
 .chart-title {
   text-align: center;
   font-size: 1.6rem;
-  color: #B8860B; /* dark gold */
+  color: #B8860B;
   margin-bottom: 15px;
+  font-weight: 600;
 }
 
-/* Responsive Adjustments */
+.chart-container {
+  width: 100%;
+  height: 300px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fffde7; 
+  border-radius: 8px;
+}
+
 @media screen and (max-width: 1200px) {
   .chart-card {
     flex: 1 1 45%;
@@ -65,4 +76,16 @@
     flex: 1 1 90%;
     min-width: 90%;
   }
+}
+
+/* ===== Optional: Fix Navbar Overlap Globally ===== */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
+
+/* Add universal top spacing if navbar is fixed */
+.main-content {
+  padding-top: 100px; /* adjust to match navbar height */
 }

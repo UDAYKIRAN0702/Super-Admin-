@@ -1,79 +1,37 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import "./M_Payment.css";
 
-const API_BASE_URL = "http://127.0.0.1:8000/api/adminpayments/";
-
 export default function MPayments() {
-  const [payments, setPayments] = useState([]);
-  const [search, setSearch] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [payments, setPayments] = useState([
+    {
+      id: 1,
+      client_name: "Client A",
+      Contact_person: "Alice",
+      project_amount: 1000,
+      my_commission: 100,
+      my_percentage: "10%",
+      total_pay: 1100,
+      withdraw_payment: "Pending",
+    },
+    {
+      id: 2,
+      client_name: "Client B",
+      Contact_person: "Bob",
+      project_amount: 2000,
+      my_commission: 200,
+      my_percentage: "10%",
+      total_pay: 2200,
+      withdraw_payment: "Paid",
+    },
+  ]);
 
+  const [search, setSearch] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [currentPayment, setCurrentPayment] = useState(null);
   const [isAdding, setIsAdding] = useState(false);
 
-  const api = axios.create({
-    baseURL: API_BASE_URL,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  const fetchPayments = async () => {
-    try {
-      setLoading(true);
-      const response = await api.get("/");
-      setPayments(response.data);
-      setError(null);
-    } catch (err) {
-      setError(err.message);
-      console.error("Error fetching payments:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const createPayment = async (paymentData) => {
-    try {
-      const response = await api.post("/", paymentData);
-      return response.data;
-    } catch (err) {
-      setError(err.message);
-      console.error("Error creating payment:", err);
-      throw err;
-    }
-  };
-
-  const updatePayment = async (id, paymentData) => {
-    try {
-      const response = await api.put(`/${id}/`, paymentData);
-      return response.data;
-    } catch (err) {
-      setError(err.message);
-      console.error("Error updating payment:", err);
-      throw err;
-    }
-  };
-
-  const deletePayment = async (id) => {
-    try {
-      await api.delete(`/${id}/`);
-      return true;
-    } catch (err) {
-      setError(err.message);
-      console.error("Error deleting payment:", err);
-      throw err;
-    }
-  };
-
-  useEffect(() => {
-    fetchPayments();
-  }, []);
-
   const filteredPayments = payments.filter((p) =>
-    [p.id, p.clientName, p.contactPerson]
+    [p.id, p.client_name, p.Contact_person]
       .join(" ")
       .toLowerCase()
       .includes(search.toLowerCase())
@@ -87,7 +45,7 @@ export default function MPayments() {
 
   const handleAdd = () => {
     setCurrentPayment({
-      id: "",
+      id: payments.length + 1,
       client_name: "",
       Contact_person: "",
       project_amount: "",
@@ -105,31 +63,22 @@ export default function MPayments() {
     setCurrentPayment((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSave = async () => {
-    try {
-      if (isAdding) {
-        const newPayment = await createPayment(currentPayment);
-        setPayments((prev) => [...prev, newPayment]);
-      } else {
-        const updatedPayment = await updatePayment(currentPayment.id, currentPayment);
-        setPayments((prev) =>
-          prev.map((p) => (p.id === updatedPayment.id ? updatedPayment : p))
-        );
-      }
-      setIsEditing(false);
-      setCurrentPayment(null);
-      setIsAdding(false);
-    } catch (err) {
+  const handleSave = () => {
+    if (isAdding) {
+      setPayments((prev) => [...prev, currentPayment]);
+    } else {
+      setPayments((prev) =>
+        prev.map((p) => (p.id === currentPayment.id ? currentPayment : p))
+      );
     }
+    setIsEditing(false);
+    setCurrentPayment(null);
+    setIsAdding(false);
   };
 
-  const handleDelete = async (id) => {
+  const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this payment?")) {
-      try {
-        await deletePayment(id);
-        setPayments((prev) => prev.filter((p) => p.id !== id));
-      } catch (err) {
-      }
+      setPayments((prev) => prev.filter((p) => p.id !== id));
     }
   };
 
@@ -151,13 +100,9 @@ export default function MPayments() {
         </div>
       </div>
 
-      {loading && <p className="loading-text">Loading payments...</p>}
-      {error && <p className="error-text">Error: {error}</p>}
-      {!loading && !error && filteredPayments.length === 0 && (
-        <p className="no-data">No matching payments found.</p>
-      )}
+      {filteredPayments.length === 0 && <p className="no-data">No matching payments found.</p>}
 
-      {!loading && !error && filteredPayments.length > 0 && (
+      {filteredPayments.length > 0 && (
         <div className="table-wrapper">
           <table className="payments-table">
             <thead>
@@ -186,7 +131,7 @@ export default function MPayments() {
                   <td>
                     <span
                       className={`payment-badge ${
-                        payment.withdraw_payment === "paid"
+                        payment.withdraw_payment.toLowerCase() === "paid"
                           ? "paid"
                           : "pending"
                       }`}
@@ -195,16 +140,10 @@ export default function MPayments() {
                     </span>
                   </td>
                   <td>
-                    <button
-                      className="edit-btn"
-                      onClick={() => handleEdit(payment)}
-                    >
+                    <button className="edit-btn" onClick={() => handleEdit(payment)}>
                       Edit
                     </button>
-                    <button
-                      className="delete-btn"
-                      onClick={() => handleDelete(payment.id)}
-                    >
+                    <button className="delete-btn" onClick={() => handleDelete(payment.id)}>
                       Delete
                     </button>
                   </td>
@@ -215,21 +154,10 @@ export default function MPayments() {
         </div>
       )}
 
-      {/* Add/Edit Popup Modal */}
       {isEditing && currentPayment && (
         <div className="modal-overlay">
           <div className="modal">
             <h2>{isAdding ? "Add Payment" : "Edit Payment"}</h2>
-            <label>
-              ID:
-              <input
-                type="text"
-                name="id"
-                value={currentPayment.id}
-                onChange={handleChange}
-                disabled={!isAdding} /* Prevent ID change during edit */
-              />
-            </label>
             <label>
               Client Name:
               <input

@@ -1,87 +1,81 @@
-/* profile.css */
-
-/* Main container */
+/* Profile container */
 .profile-container {
-  max-width: 900px;
-  margin: 30px auto;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
-  font-family: "Segoe UI", sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 600px; /* Example fixed height for profile box */
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden; /* Hide overflow outside the container */
+  background-color: #fff;
+  font-family: Arial, sans-serif;
 }
 
-/* Header row for tab buttons */
+/* Tab header row inside container */
 .profile-header-row {
   display: flex;
-  background: #f9fafb;
-  border-bottom: 2px solid #e5e7eb;
+  background-color: #f8f8f8;
+  position: sticky; /* Fixed inside container */
+  top: 0; /* Stick at top of container */
+  z-index: 10;
+  border-bottom: 1px solid #ddd;
+  padding: 0 10px;
+  height: 50px;
+  align-items: center;
+  overflow-x: auto; /* Scroll horizontally if many tabs */
 }
 
-/* Tab buttons */
+/* Individual tab buttons */
 .profile-header-btn {
-  flex: 1;
-  padding: 14px 18px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: transparent;
+  padding: 8px 16px;
+  margin-right: 10px;
+  background: none;
   border: none;
   outline: none;
-  font-size: 15px;
-  font-weight: 500;
-  color: #6b7280;
   cursor: pointer;
-  transition: all 0.25s ease-in-out;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  color: #333;
+  white-space: nowrap;
 }
 
 .profile-header-btn:hover {
-  background: #f3f4f6;
-  color: #374151;
+  background-color: #f0f0f0;
 }
 
 .profile-header-btn.active {
-  background: #ffffff;
-  border-bottom: 3px solid #3b82f6;
-  color: #111827;
-  font-weight: 600;
+  border-bottom: 3px solid #007bff;
+  color: #007bff;
+  font-weight: bold;
 }
 
-/* Icon inside tab button */
+/* Tab icon */
 .profile-icon {
-  font-size: 18px;
+  margin-right: 6px;
+  font-size: 16px;
 }
 
-/* Section content */
+/* Content below sticky header */
 .profile-section-content {
-  padding: 25px 30px;
-  background: #ffffff;
-  min-height: 300px;
-  animation: fadeIn 0.3s ease-in-out;
+  flex: 1;
+  overflow-y: auto; /* Scroll inside container */
+  padding: 20px;
+  background-color: #fff;
+  min-height: 0; /* Important for flex scroll */
 }
 
-/* Fade-in animation for content switching */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Responsive behavior */
+/* Responsive */
 @media (max-width: 768px) {
   .profile-header-btn {
-    flex-direction: column;
-    font-size: 14px;
-    padding: 12px;
+    padding: 6px 10px;
+    font-size: 12px;
   }
 
   .profile-icon {
-    font-size: 20px;
+    font-size: 14px;
   }
 }

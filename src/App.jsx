@@ -1,4 +1,4 @@
-import React, { Profiler } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MarketingDashboard from "./SUPER ADMIN/Marketing_Dashboard";
 import ManagerDashboard from "./SUPER ADMIN/M_Dashboard";
@@ -14,46 +14,40 @@ import EmployeeCRM from "./SUPER ADMIN/M_crm";
 import Profile from "./profile/profile";
 import EmployeeDelete from "./SUPER ADMIN/Employee_Delete";
 import EmployeeMonitor from "./SUPER ADMIN/Employee_Monitor";
-import StaffLogin from "./profile/Logout";
+import StaffLogin from "./SUPER ADMIN/Logout";
 import PaymentForm from "./SUPER ADMIN/Paymentdata";
 import MBusiness from "./SUPER ADMIN/M_Business_Analysis";
 
-
-
-
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <Router>
-      <Routes>
-       {/* Dashboard Routes */}
-         
-        <Route element={<MarketingDashboard/>}>
-         <Route path="/" element={<ManagerDashboard/>} />
-                  <Route path="/Mcrm" element={<EmployeeCRM/>} />
-
-        <Route path="/Mtodaybusiness" element={<MTodayBusines/>} />
-         <Route path="/Mreferral" element={<MRefferal/>} />
-         <Route path="/Mpayment" element={<MPayments/>} />
-         <Route path="/Mbusiness" element={<MBusiness/>} />
-         <Route path="/Mticket" element={<MTicketRaise/>} />
-         <Route path="/Mcatelist" element={<MOrgTree/>} />
-         <Route path="/Memployee-register" element={<EmployeeRegister/>} />
-         <Route path="/Memployee-track" element={<EmployeeTrack/>} />
-        <Route path="/profile" element={<Profile/>} />
-         <Route path="/track" element={<EmployeeTrack/>} />
-         <Route path="/individual-crm" element={<IndividualCRM/>} />
-         <Route path="/Memployee-crm" element={<EmployeeCRM/>} />
-                  <Route path="/employee Delete" element={<EmployeeDelete/>} />
-         <Route path="/employee Monitor" element={<EmployeeMonitor/>} />
-      <Route path="/login" element={<StaffLogin/>} />
-
-      <Route path="/Paymentdata" element={<PaymentForm/>} />
-
-       
-        </Route>
-       
-      </Routes>
-      
+      {isLoggedIn ? (
+        <Routes>
+          <Route element={<MarketingDashboard setIsLoggedIn={setIsLoggedIn} />}>
+            <Route path="/" element={<ManagerDashboard />} />
+            <Route path="/Mcrm" element={<EmployeeCRM />} />
+            <Route path="/Mtodaybusiness" element={<MTodayBusines />} />
+            <Route path="/Mreferral" element={<MRefferal />} />
+            <Route path="/Mpayment" element={<MPayments />} />
+            <Route path="/Mbusiness" element={<MBusiness />} />
+            <Route path="/Mticket" element={<MTicketRaise />} />
+            <Route path="/Mcatelist" element={<MOrgTree />} />
+            <Route path="/Memployee-register" element={<EmployeeRegister />} />
+            <Route path="/Memployee-track" element={<EmployeeTrack />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/track" element={<EmployeeTrack />} />
+            <Route path="/individual-crm" element={<IndividualCRM />} />
+            <Route path="/Memployee-crm" element={<EmployeeCRM />} />
+            <Route path="/employee-Delete" element={<EmployeeDelete />} />
+            <Route path="/employee-Monitor" element={<EmployeeMonitor />} />
+            <Route path="/Paymentdata" element={<PaymentForm />} />
+          </Route>
+        </Routes>
+      ) : (
+        <StaffLogin onLogin={() => setIsLoggedIn(true)} />
+      )}
     </Router>
   );
 }

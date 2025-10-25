@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FaKey, FaUniversity, FaIdCard, FaUser } from "react-icons/fa";
 import "./profile.css";
-
-// Import separate components (no spaces in filenames)
 import Info from "./info";
-import ChangePassword from "./change_password";
 import BankDetails from "./Bank_Details";
-import VirtualIDCard from "./Digital_ID";
+import ChangePassword from "./change_password";
+import VirtualID from "./Digital_ID";
 
 const sections = [
   { id: "info", title: "Personal Info", icon: <FaUser /> },
@@ -55,11 +53,11 @@ export default function Profile() {
       case "info":
         return <Info data={userData} />;
       case "password":
-        return <ChangePassword />;
+        return <ChangePassword/>;
       case "bank":
-        return <BankDetails />;
+        return <BankDetails/>
       case "digital-id":
-        return <VirtualIDCard data={userData} />;
+        return <VirtualID   data={userData}/>;
       default:
         return null;
     }

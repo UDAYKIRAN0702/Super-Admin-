@@ -1,14 +1,20 @@
+/* ===== Employee Monitor (Fixed + Improved) ===== */
+
 .employee-monitor {
-  padding: 20px;
+  padding: 400px 20px 6px;
   font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+  min-height: 100vh;
 }
 
+/* Title */
 .employee-monitor h2 {
   color: #000000;
   margin-bottom: 20px;
 }
 
-/* Summary cards */
+/* ===== Summary Cards ===== */
 .summary-cards {
   display: flex;
   flex-wrap: wrap;
@@ -18,17 +24,18 @@
 
 .card {
   flex: 1 1 150px;
-  background-color: #f4f4f4;
+  background-color: #fdf6e3; /* light warm background */
   padding: 15px;
   border-radius: 8px;
   text-align: center;
-  box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  border-left: 5px solid #B8860B; /* gold accent */
 }
 
 .card h3 {
   margin-bottom: 8px;
   font-size: 16px;
-  color: #000000;
+  color: #B8860B; /* dark gold */
 }
 
 .card p {
@@ -37,11 +44,12 @@
   color: #222;
 }
 
-/* Employee table */
+/* ===== Employee Table ===== */
 .employee-table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
+  margin-top: 10px;
 }
 
 .employee-table th,
@@ -50,41 +58,51 @@
   padding: 10px;
 }
 
+/* Fixed: Add white text for table header */
 .employee-table th {
   background-color: #0b0b0b;
+  color: #ffffff; /* ✅ text now visible */
+  font-weight: 600;
+}
+
+.employee-table td {
+  color: #000000;
 }
 
 .employee-table tr:nth-child(even) {
-  background-color: #fafafa;
+  background-color: #f9f9f9;
 }
 
 .employee-table tr:hover {
   background-color: #f1f1f1;
 }
 
-/* Status colors */
+/* ===== Status Labels ===== */
 .status {
   padding: 4px 8px;
   border-radius: 4px;
   color: white;
   font-weight: bold;
   display: inline-block;
+  font-size: 0.9rem;
 }
 
 .status.active {
-  background-color: green;
+  background-color: #28a745; /* green */
 }
 
 .status.inactive {
-  background-color: red;
+  background-color: #dc3545; /* red */
 }
 
 .status.onleave {
-  background-color: orange;
+  background-color: #ff9800; /* orange */
 }
 
-/* No data message */
+/* ===== No Data Message ===== */
 .no-data {
   font-style: italic;
   color: #888;
+  margin-top: 15px;
+  text-align: center;
 }
