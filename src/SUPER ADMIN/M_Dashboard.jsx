@@ -41,7 +41,7 @@ export default function ManagerDashboard() {
       </div>
 
       <div className="activity-section">
-        <h2>Recent Activity</h2>
+        <h1>Recent Activity</h1>
         <ul>
           <li>Suresh updated project status</li>
           <li>New payment of $500 received</li>
@@ -50,7 +50,7 @@ export default function ManagerDashboard() {
       </div>
 
       <div className="announcements">
-        <h2>Announcements</h2>
+        <h1>Announcements</h1>
         <p>📢 Staff meeting scheduled for Friday at 10 AM.</p>
         <p>📢 New Project Added</p>
       </div>

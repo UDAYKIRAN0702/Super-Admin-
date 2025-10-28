@@ -1,8 +1,12 @@
 .employee-container {
   padding: 20px;
   font-family: Arial, sans-serif;
+  color: #000000;
+  
 }
-
+.head{
+  color: #B8860B;
+}
 .employee-container h2 {
   margin-bottom: 15px;
 }

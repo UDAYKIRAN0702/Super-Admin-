@@ -59,7 +59,7 @@ export default function MarketingDashboard({ setIsLoggedIn }) {
               onClick={() => setOpen((prev) => !prev)}
             >
               <FaUserCircle className="profile-icon" />
-              <span className="profile-text">RAKESH</span>
+              <span className="profile-text">Super Admin</span>
             </button>
             {open && (
               <ul className="dropdown-content">

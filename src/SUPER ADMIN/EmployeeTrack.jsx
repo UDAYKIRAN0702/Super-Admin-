@@ -1,43 +1,15 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import "./EmployeeTrack.css";
 
 function EmployeeTrack() {
   const [search, setSearch] = useState("");
-  const [employees, setEmployees] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  // API call to fetch employee data using Axios
-  useEffect(() => {
-    const fetchEmployees = async () => {
-      try {
-        setLoading(true);
-        // Using JSONPlaceholder API for demonstration
-        const response = await axios.get('http://127.0.0.1:8000/api/employees/');
-        
-        // Transform API data to match our structure with role instead of department
-        const formattedData = response.data.map(user => ({
-          id: user.employee_id,
-          name: user.name,
-          role: user.role || "General", // Using company bs as role
-          email: user.email,
-          active: Math.floor(Math.random() * 10), // Random data for demo
-          closed: Math.floor(Math.random() * 10)  // Random data for demo
-        }));
-        
-        setEmployees(formattedData);
-        setError(null);
-      } catch (err) {
-        setError(err.message);
-        console.error("Failed to fetch employees:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchEmployees();
-  }, []);
+  const employees = [
+    { id: 101, name: "John Doe", department: "HR", email: "john@company.com" ,Active:"3",closed:"5"},
+    { id: 102, name: "Jane Smith", department: "Finance", email: "jane@company.com",Active:"3",closed:"5" },
+    { id: 103, name: "Robert Brown", department: "IT", email: "robert@company.com",Active:"3",closed:"5" },
+    { id: 104, name: "Emily Davis", department: "Marketing", email: "emily@company.com",Active:"3",closed:"5" },
+  ];
 
   const filteredEmployees = employees.filter(
     (emp) =>
@@ -58,40 +30,39 @@ function EmployeeTrack() {
         className="employee-search"
       />
 
-      {/* Loading and Error States */}
-      {loading && <div className="loading">Loading employees...</div>}
-      {error && <div className="error">Error: {error}</div>}
-
       {/* Table */}
-      {!loading && !error && (
-        <table className="employee-table">
-          <thead>
+      <table className="employee-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Email</th>
+            <th>Active</th>
+            <th>Close</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredEmployees.length > 0 ? (
+            filteredEmployees.map((emp) => (
+              <tr key={emp.id}>
+                <td>{emp.id}</td>
+                <td>{emp.name}</td>
+                <td>{emp.department}</td>
+                <td>{emp.email}</td>
+                <td>{emp.Active}</td>
+                <td>{emp.closed}</td>        
+              </tr>
+            ))
+          ) : (
             <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Role</th>
-              <th>Email</th>
-              <th>Active</th>
-              <th>Closed</th>
+              <td colSpan="4" className="no-data">
+                No employees found
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            
-              {filteredEmployees.map((emp) => (
-                <tr key={emp.id}>
-                  <td>{emp.id}</td>
-                  <td>{emp.name}</td>
-                  <td>{emp.role}</td>
-                  <td>{emp.email}</td>
-                  <td>{emp.active}</td>
-                  <td>{emp.closed}</td>        
-                </tr>
-              ))
-            }
-
-          </tbody>
-        </table>
-      )}
+          )}
+        </tbody>
+      </table>
     </div>
   );
 }

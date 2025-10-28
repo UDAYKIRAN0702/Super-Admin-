@@ -1,6 +1,6 @@
 /* ===== Container ===== */
 .employee-container {
-  background: #fff;
+  background: #FFFDE7;
   border-radius: 16px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
   padding: 20px;
@@ -14,7 +14,7 @@
 .employee-title {
   font-size: 24px;
   font-weight: bold;
-  color: #333;
+  color: #B8860B;
   margin-bottom: 20px;
   text-align: center;
 }

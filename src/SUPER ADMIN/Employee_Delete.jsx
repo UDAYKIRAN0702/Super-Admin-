@@ -40,7 +40,7 @@ function EmployeeDelete() {
 
   return (
     <div className="employee-container">
-      <h2>Employee Management</h2>
+      <h2 className="head">Employee Management</h2>
 
       {/* Search */}
       <input

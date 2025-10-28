@@ -1,10 +1,13 @@
+
+
 .dashboard-container {
   display: flex;
   flex-direction: column;
   min-height: 0%;
   width: 100%;
-  background: #ffffff;
+  background: #fff; /* soft light yellow */
   box-sizing: border-box;
+  transition: background 0.3s ease;
 }
 
 .dashboard-header {
@@ -13,7 +16,7 @@
   left: 0;
   width: 100%;
   height: 60px;
-  background: linear-gradient(to right, #B8860B, #8B7500); /* Dark Gold → Deeper Gold */
+  background: linear-gradient(to right, #B8860B, #8B7500); /* dark → deep gold */
   color: #fff;
   display: flex;
   justify-content: space-between; 
@@ -31,8 +34,10 @@
 .dashboard-title {
   font-size: 22px;
   font-weight: 700;
-  color: #fff;
+  color: #fff; /* golden title */
   margin: 0;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  animation: fadeInDown 0.6s ease;
 }
 
 .dashboard-header-wrapper {
@@ -41,7 +46,6 @@
   margin-left: auto; /* push to right */
 }
 
-/* ===== Profile Section ===== */
 .profile-section {
   position: relative;
 }
@@ -52,19 +56,26 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+    background-color: #FFFDE7;
+
   font-weight: 500;
+  }
+
+.profile-btn:hover {
+  transform: scale(1.05);
 }
 
 .profile-icon {
   font-size: 20px;
   margin-right: 6px;
+    background-color: #FFFDE7;
+
 }
 
 .profile-text {
   font-size: 14px;
 }
 
-/* ===== Dropdown ===== */
 .dropdown-content {
   position: absolute;
   right: 0; 
@@ -78,6 +89,7 @@
   box-shadow: 0 4px 12px rgba(184, 134, 11, 0.6);
   border-radius: 6px;
   z-index: 1001;
+  animation: fadeIn 0.4s ease;
 }
 
 .dropdown-content li {
@@ -90,7 +102,7 @@
 }
 
 .dropdown-content li:hover {
-  background-color: #fff7d1; /* soft gold hover */
+  background-color: #FFF8DC; /* soft cream hover */
 }
 
 .dropdown-content li a {
@@ -104,30 +116,27 @@
   margin-right: 8px;
 }
 
-/* ===== Body Layout ===== */
+/* ===== BODY LAYOUT ===== */
 .dashboard-body {
   display: flex;
   width: 100%;
-  background-color: #ffffff;
-  margin-top: 90px; /* offset for fixed header */
+  background-color: goldenrod;
+  margin-top: 70px; /* offset for fixed header */
 }
 
-h2 {
-  font-size: 200%;
-}
-
-/* ===== Sidebar ===== */
+/* ===== SIDEBAR ===== */
 .sidebar {
   width: 260px;
   background: linear-gradient(to top, #8B7500, #B8860B); /* Dark Gold → Gold */
   min-height: calc(100vh - 50px);
-  padding-top: 20px;
+  padding-top: 0px;
   position: fixed;
-  top: 35px;
+  top: 60px;
   left: 0;
   overflow-y: auto;
   transition: all 0.3s ease;
-  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.25);
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.3);
+  border-radius: 0 12px 12px 0;
 }
 
 .sidebar ul {
@@ -138,22 +147,19 @@ h2 {
 
 .sidebar ul li {
   margin: 0;
-  color: #333;
-}
-
-h1 {
+  color: black;
+}h1 {
   color: #FFD700;
 }
-
 .sidebar ul li a,
 .sidebar ul li button {
   display: flex;
   align-items: center;
-  color: #ffffff;
+  color: #fff;
   padding: 16px 24px;
   text-decoration: none;
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 900;
   width: 190%;
   gap: 18px;
   border: none;
@@ -183,7 +189,7 @@ h1 {
 
 /* ===== Active Sidebar Link ===== */
 .sidebar ul li a.active {
-  background: linear-gradient(to right, #000000, #B8860B); /* Black → Gold */
+  background: linear-gradient(to right, #000000, #B8860B);
   border-left: 5px solid #FFD700;
 }
 
@@ -202,20 +208,23 @@ h1 {
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 215, 0, 0.4);
   border-radius: 4px;
 }
 
-/* ===== Main Content ===== */
+/* ===== MAIN CONTENT ===== */
 .main-content {
   margin-left: 260px; /* same as sidebar width */
   padding: 30px;
   width: calc(100% - 260px);
   box-sizing: border-box;
   transition: all 0.3s ease;
+  background-color: #ffffff;
+  border-radius: 12px;
+  animation: fadeIn 0.5s ease;
 }
 
-/* ===== Logout Button ===== */
+/* ===== LOGOUT BUTTON ===== */
 .logout-btn {
   width: 100%;
   text-align: left;
@@ -233,7 +242,24 @@ h1 {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* ===== Responsive ===== */
+/* ===== HEADINGS ===== */
+h1, h2 {
+  color: #ffffff; /* dark gold headings */
+  text-shadow: 0 0 2px rgba(0,0,0,0.2);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .sidebar {
     position: relative;

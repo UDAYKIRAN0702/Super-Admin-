@@ -1,8 +1,8 @@
 
 .dashboard-wrapper {
-  padding: 319px 46px 122px; /* Added extra top padding for space at top */
+  padding: 31px 46px 122px; /* Added extra top padding for space at top */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #ffffff;
+  background-color: #FFFDE7;
   min-height: 100vh;
   box-sizing: border-box;
 }

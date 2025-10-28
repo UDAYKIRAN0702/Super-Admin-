@@ -1,6 +1,6 @@
 
 .business-dashboard {
-  padding:461px 30px 30px;
+  padding:61px 30px 30px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #ffffff;
   min-height: 100vh;
@@ -87,5 +87,5 @@ body {
 
 /* Add universal top spacing if navbar is fixed */
 .main-content {
-  padding-top: 100px; /* adjust to match navbar height */
+  padding-top: 10px; /* adjust to match navbar height */
 }
