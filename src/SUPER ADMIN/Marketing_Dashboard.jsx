@@ -51,7 +51,7 @@ export default function MarketingDashboard({ setIsLoggedIn }) {
   return (
     <div className="dashboard-container">
       <header className="dashboard-header">
-        <h2 className="header-title">TSAR IT Super Admin Portal - Dashboard</h2>
+        <h2 className="header-title">Rynaty Admin Portal - Dashboard</h2>
         <div className="dashboard-header-wrapper">
           <div className="profile-section" ref={dropdownRef}>
             <button
@@ -90,11 +90,7 @@ export default function MarketingDashboard({ setIsLoggedIn }) {
                 <FaBusinessTime /> Today Business
               </NavLink>
             </li>
-            <li>
-              <NavLink to="/Paymentdata">
-                <SiCivicrm /> Payment Data
-              </NavLink>
-            </li>
+          
             <li>
               <NavLink to="/Mpayment">
                 <FaCcAmazonPay /> Payments
@@ -132,7 +128,7 @@ export default function MarketingDashboard({ setIsLoggedIn }) {
             </li>
             <li>
               <NavLink to="/employee-Delete">
-                <TiUserDeleteOutline /> Employee Delete
+                <TiUserDeleteOutline /> Employee Termination
               </NavLink>
             </li>
             <li>

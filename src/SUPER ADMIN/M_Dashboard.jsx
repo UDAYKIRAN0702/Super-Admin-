@@ -14,31 +14,7 @@ export default function ManagerDashboard() {
     <div className="dashboard-wrapper">
       <h1>Welcome to the Staff Dashboard</h1>
 
-      <div className="business-grid">
-        <div className="business-card">
-          <h2>HMS</h2>
-          <p>Count: 3</p>
-          <p>Earning Payment : 3000</p>
-        </div>
-
-        <div className="business-card">
-          <h2>EMS</h2>
-       <p>Count: 4</p>
-          <p>Earning Payment : 3000</p>
-        </div>
-
-        <div className="business-card">
-          <h2>CRM</h2>
-        <p>Count: 2</p>
-          <p>Earning Payment : 3000</p>
-        </div>
-
-        <div className="business-card">
-          <h2>Billing</h2>
-       <p>Count: 3</p>
-          <p>Earning Payment : 9000</p>
-        </div>
-      </div>
+    
 
       <div className="activity-section">
         <h1>Recent Activity</h1>

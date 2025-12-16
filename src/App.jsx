@@ -15,7 +15,6 @@ import Profile from "./profile/profile";
 import EmployeeDelete from "./SUPER ADMIN/Employee_Delete";
 import EmployeeMonitor from "./SUPER ADMIN/Employee_Monitor";
 import StaffLogin from "./SUPER ADMIN/Logout";
-import PaymentForm from "./SUPER ADMIN/Paymentdata";
 import MBusiness from "./SUPER ADMIN/M_Business_Analysis";
 
 function App() {
@@ -42,7 +41,6 @@ function App() {
             <Route path="/Memployee-crm" element={<EmployeeCRM />} />
             <Route path="/employee-Delete" element={<EmployeeDelete />} />
             <Route path="/employee-Monitor" element={<EmployeeMonitor />} />
-            <Route path="/Paymentdata" element={<PaymentForm />} />
           </Route>
         </Routes>
       ) : (

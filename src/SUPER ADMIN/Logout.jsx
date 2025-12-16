@@ -50,10 +50,14 @@ export default function StaffLogin({ onLogin }) {
       <form className="login-form" onSubmit={handleLogin}>
         <label>Role</label>
         <select name="role" value={formData.role} onChange={handleChange}>
-          <option>Marketing</option>
-          <option>Developer</option>
+          <option>Vendor</option>
           <option>Admin</option>
           <option>Intern</option>
+          <option>Vendor</option>
+          <option>Marketing</option>
+          <option>Developer</option>
+        
+          <option>Other</option>
         </select>
 
         <label>Employee ID</label>
