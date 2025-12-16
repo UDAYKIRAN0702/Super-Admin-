@@ -42,7 +42,7 @@ input, select {
 .submit-btn {
   margin-top: 20px;
   padding: 12px;
-  background: linear-gradient(to right, #B8860B, #FFD700); /* Dark gold → bright gold */
+  background: linear-gradient(to right, #B8860B, #FFD700); 
   color: #fff;
   font-size: 16px;
   font-weight: 500;
@@ -53,7 +53,7 @@ input, select {
 }
 
 .submit-btn:hover {
-  background: linear-gradient(to right, #FFD700, #B8860B); /* Reverse gradient on hover */
+  background: linear-gradient(to right, #FFD700, #B8860B); 
   transform: translateY(-2px);
 }
 
